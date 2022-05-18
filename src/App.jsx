@@ -1,4 +1,5 @@
 import React from "react";
+import { useRecoilState } from "recoil";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -8,6 +9,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 import Like from "./Like";
+import { photoAtom } from "./state";
+import axios from "axios";
 
 import {
   Typography,
@@ -25,8 +28,8 @@ import {
 import useStyles from "./styles";
 library.add(fab, faHeart);
 
-const API_URL =
-  "https://api.nasa.gov/planetary/apod?api_key=IlLiEOOYhoMjH0if5W8OS2iiOmDZ6gbOEQxBtRkS";
+const API_URL = "https://api.nasa.gov/planetary/apod";
+const API_key = "IlLiEOOYhoMjH0if5W8OS2iiOmDZ6gbOEQxBtRkS";
 
 const photo1 = {
   copyright: "Capture: Greg Turgeon Processing: Kiko Fairbairn",
@@ -43,10 +46,19 @@ const photo1 = {
 const App = () => {
   const classes = useStyles();
 
+  const [photo, setPhoto] = useRecoilState(photoAtom);
+
   const searchPhotos = async () => {
-    const response = await fetch(`${API_URL}`);
+    const date = "2022-05-17";
+    const response = await fetch(`${API_URL}?api_key=${API_key}&date=${date}`);
+    // const response = await axios.get(API_URL, {
+    //   api_key: API_key,
+    //   date: "2022-05-17",
+    // });
     const data = await response.json();
-    console.log(data);
+    setPhoto(data);
+    // console.log(response);
+    // console.log(data);
   };
 
   useEffect(() => {
@@ -108,31 +120,19 @@ const App = () => {
         <Container className={classes.cardGrid} maxWidth="sm">
           <Grid>
             <Card className={classes.card}>
-              {/* className={classes.cardTitle} */}
               <CardContent className={classes.cardHeader}>
-                <Typography variant="h5">{photo1.title}</Typography>
-                <Typography variant="subtitle">{photo1.date}</Typography>
+                <Typography variant="h5">{photo?.title ?? ""}</Typography>
+                <Typography variant="subtitle">{photo?.date ?? ""}</Typography>
               </CardContent>
-              <CardMedia className={classes.cardMedia} image={photo1.hdurl} />
+              {photo?.hdurl ? (
+                <CardMedia className={classes.cardMedia} image={photo.hdurl} />
+              ) : null}
               <CardContent className={classes.cardExplaination}>
-                <Typography>{photo1.explanation}</Typography>
-                <Typography justify="left">{photo1.copyright}</Typography>
+                <Typography>{photo?.explanation ?? ""}</Typography>
+                <Typography justify="left">{photo?.copyright ?? ""}</Typography>
               </CardContent>
               <CardActions>
                 <Like />
-                {/* <IconButton
-                  aria-label="like"
-                  size="medium"
-                  onClick={() => {
-                    <FavoriteIcon />;
-                  }}
-                >
-                  <FavoriteBorderIcon className={classes.like} />
-                </IconButton> */}
-
-                {/* <Button size="small" color="primary">
-                  Edit
-                </Button> */}
               </CardActions>
             </Card>
           </Grid>
