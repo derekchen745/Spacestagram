@@ -19,15 +19,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cardGrid: {
-    padding: "20px 0",
+    // padding: theme.spacing(8, 2, 6),
+    paddingTop: "20px",
     height: "100vh",
   },
 
-  // card: {
-  //   height: "100%",
-  //   display: "flex",
-  //   flexDirection: "column",
-  // },
+  card: {
+    paddingTop: "10px",
+  },
 
   cardHeader: {
     paddingBottom: "10px",
@@ -45,17 +44,17 @@ const useStyles = makeStyles((theme) => ({
     color: "#000",
   },
 
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: "0px",
-    marginTop: "calc(5% + 60px)",
-    bottom: 0,
-    // display: "flex",
-    // flexDirection: "column",
-    // justify: "center",
-    // padding: "10px 0",
-    // position: "fixed",
-  },
+  // footer: {
+  //   backgroundColor: theme.palette.background.paper,
+  //   padding: "0px",
+  //   marginTop: "calc(5% + 60px)",
+  //   bottom: 0,
+  //   // display: "flex",
+  //   // flexDirection: "column",
+  //   // justify: "center",
+  //   // padding: "10px 0",
+  //   // position: "fixed",
+  // },
 }));
 
 export default useStyles;

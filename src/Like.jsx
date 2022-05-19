@@ -12,15 +12,13 @@ const Like = () => {
   };
 
   return (
-    <div>
-      <IconButton onClick={() => toggle()}>
-        {liked === false ? (
-          <FavoriteBorderIcon />
-        ) : (
-          <FavoriteIcon color="error" />
-        )}
-      </IconButton>
-    </div>
+    <IconButton onClick={() => toggle()}>
+      {liked === false ? (
+        <FavoriteBorderIcon />
+      ) : (
+        <FavoriteIcon color="error" />
+      )}
+    </IconButton>
   );
 };
 
