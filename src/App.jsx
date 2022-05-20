@@ -10,6 +10,7 @@ import PhotoCard from "./PhotoCard";
 import { photoAtom, dateAtom } from "./state";
 import DateSearch from "./DateSearch";
 import { TextField, Stack } from "@mui/material";
+import { Outlet, Route, Routes, Link } from "react-router-dom";
 import axios from "axios";
 
 import {
@@ -86,11 +87,6 @@ const App = () => {
     // });
 
     setPhoto(data);
-    console.log(data);
-    console.log(photo);
-
-    // console.log(response);
-    // console.log(data);
   };
 
   useEffect(() => {
@@ -116,9 +112,6 @@ const App = () => {
             size="small"
             // sx={{
             //   width: 200,
-            //   // display: "flex",
-            //   // alignItems: "center",
-            //   // justifyContent: "center",
             // }}
             InputLabelProps={{
               shrink: true,
@@ -149,24 +142,6 @@ const App = () => {
               {/* <h2>Why no work</h2> */}
             </div>
           )}
-          {/* <Card className={classes.card}>
-              <CardContent className={classes.cardHeader}>
-                <Typography variant="h5">{photo?.title ?? ""}</Typography>
-                <Typography variant="subtitle1">{photo?.date ?? ""}</Typography>
-              </CardContent>
-              {photo?.hdurl ? (
-                <CardMedia className={classes.cardMedia} image={photo.hdurl} />
-              ) : null}
-              <CardContent className={classes.cardExplaination}>
-                <Typography>{photo?.explanation ?? ""}</Typography>
-                <Typography justify="left">
-                  Copyright: {photo?.copyright ?? ""}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Like />
-              </CardActions>
-            </Card> */}
         </Container>
       </main>
 
