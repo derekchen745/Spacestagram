@@ -4,6 +4,12 @@ const useStyles = makeStyles((theme) => ({
   navbar: {
     color: "#000",
     backgroundColor: theme.palette.background.paper,
+    justifyContent: "space-between",
+  },
+
+  homeButton: {
+    display: "flex",
+    cursor: "pointer",
   },
 
   container: {
@@ -20,9 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
   searchBar: {
     // width: "200px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    marginLeft: "auto",
   },
 
   cardGrid: {

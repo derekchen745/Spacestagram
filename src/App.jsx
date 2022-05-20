@@ -98,6 +98,7 @@ const App = () => {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar className={classes.navbar}>
+<<<<<<< HEAD
           <FontAwesomeIcon
             icon={["fab", "instagram"]}
             className={classes.icon}
@@ -118,6 +119,34 @@ const App = () => {
             }}
             onChange={(e) => setDate(e.target.value)}
           />
+=======
+          <div className={classes.homeButton} onClick={() => setDate(null)}>
+            <FontAwesomeIcon
+              icon={["fab", "instagram"]}
+              className={classes.icon}
+            />
+            <Typography variant="h5">Spacestagram</Typography>
+          </div>
+          <div className={classes.searchBar}>
+            <TextField
+              id="date"
+              label="Search By Date"
+              type="date"
+              defaultValue="2022-01-01"
+              size="small"
+              // sx={{
+              //   width: 200,
+              //   // display: "flex",
+              //   // alignItems: "center",
+              //   // justifyContent: "center",
+              // }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+>>>>>>> 54e6e5e1e5c8e8601b4bc28906d563a8ad0afe2d
         </Toolbar>
       </AppBar>
 
