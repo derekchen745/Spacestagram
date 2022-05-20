@@ -18,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
     // color: "#000",
   },
 
+  searchBar: {
+    // width: "200px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
   cardGrid: {
     // padding: theme.spacing(8, 2, 6),
     paddingTop: "20px",

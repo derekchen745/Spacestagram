@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import Like from "./Like";
 import PhotoCard from "./PhotoCard";
-import { photoAtom } from "./state";
+import { photoAtom, dateAtom } from "./state";
+import DateSearch from "./DateSearch";
+import { TextField, Stack } from "@mui/material";
 import axios from "axios";
 
 import {
@@ -24,7 +26,7 @@ import {
   Container,
 } from "@material-ui/core";
 import useStyles from "./styles";
-import { MovieSharp } from "@material-ui/icons";
+import { Box } from "@mui/system";
 library.add(fab, faHeart);
 
 const API_URL = "https://api.nasa.gov/planetary/apod";
@@ -46,6 +48,8 @@ const App = () => {
   const classes = useStyles();
 
   const [photo, setPhoto] = useRecoilState(photoAtom);
+  const [date, setDate] = useRecoilState(dateAtom);
+  console.log(date);
 
   const searchPhotos = async () => {
     const end_date = new Date().toLocaleDateString("en-CA", {
@@ -55,19 +59,22 @@ const App = () => {
     });
 
     const start_date = new Date(
-      Date.parse(new Date()) - 864000000
+      Date.parse(new Date()) - 864000000 //864000000 is the amount of milliseconds in 10 days
     ).toLocaleDateString("en-CA", {
       year: "numeric",
       month: "numeric",
       day: "numeric",
     });
+
     // const date = "2022-05-17";
     // const start_date = "2022-05-15";
     // const end_date = "2022-05-18";
     // const response = await fetch(`${API_URL}?api_key=${API_key}&date=${date}`);
 
     const response = await fetch(
-      `${API_URL}?api_key=${API_key}&start_date=${start_date}&end_date=${end_date}`
+      date == null
+        ? `${API_URL}?api_key=${API_key}&start_date=${start_date}&end_date=${end_date}`
+        : `${API_URL}?api_key=${API_key}&date=${date}`
     );
 
     //&end_date${end_date}
@@ -88,7 +95,7 @@ const App = () => {
 
   useEffect(() => {
     searchPhotos();
-  }, []);
+  }, [date]);
 
   return (
     <>
@@ -100,6 +107,24 @@ const App = () => {
             className={classes.icon}
           />
           <Typography variant="h5">Spacestagram</Typography>
+          <TextField
+            className={classes.searchBar}
+            id="date"
+            label="Search By Date"
+            type="date"
+            defaultValue="2022-01-01"
+            size="small"
+            // sx={{
+            //   width: 200,
+            //   // display: "flex",
+            //   // alignItems: "center",
+            //   // justifyContent: "center",
+            // }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </Toolbar>
       </AppBar>
 
@@ -120,7 +145,8 @@ const App = () => {
             </div>
           ) : (
             <div>
-              <h2>Why no work</h2>
+              <PhotoCard photo={photo} />
+              {/* <h2>Why no work</h2> */}
             </div>
           )}
           {/* <Card className={classes.card}>

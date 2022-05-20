@@ -24,15 +24,19 @@ const PhotoCard = ({ photo }) => {
           <Typography variant="h5">{photo?.title ?? ""}</Typography>
           <Typography variant="subtitle1">{photo?.date ?? ""}</Typography>
         </CardContent>
-        {photo?.hdurl ? (
+
+        {photo?.media_type == "image" ? (
           <CardMedia className={classes.cardMedia} image={photo.hdurl} />
-        ) : null}
+        ) : (
+          <Typography>Cannot Display Video</Typography>
+        )}
         <CardContent className={classes.cardExplaination}>
           <Typography>{photo?.explanation ?? ""}</Typography>
           <Typography justify="left">
             Copyright: {photo?.copyright ?? ""}
           </Typography>
         </CardContent>
+
         <CardActions>
           <Like />
         </CardActions>
