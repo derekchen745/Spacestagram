@@ -26,7 +26,7 @@ const PhotoCard = ({ photo }) => {
         </CardContent>
 
         {photo?.media_type == "image" ? (
-          <CardMedia className={classes.cardMedia} image={photo.hdurl} />
+          <CardMedia className={classes.cardMedia} image={photo.url} />
         ) : (
           <Typography>Cannot Display Video</Typography>
         )}
