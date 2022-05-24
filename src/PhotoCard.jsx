@@ -15,7 +15,7 @@ import {
 import useStyles from "./styles";
 import Like from "./Like";
 
-const PhotoCard = ({ photo }) => {
+const PhotoCard = ({ photo, onToggleLike, liked }) => {
   const classes = useStyles();
   return (
     <Grid item key={photo}>
@@ -38,7 +38,7 @@ const PhotoCard = ({ photo }) => {
         </CardContent>
 
         <CardActions>
-          <Like />
+          <Like onToggleLike={onToggleLike} photo={photo} liked={liked} />
         </CardActions>
       </Card>
     </Grid>

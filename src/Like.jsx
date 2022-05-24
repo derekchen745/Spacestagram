@@ -1,19 +1,18 @@
 import React from "react";
-// import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
-import { FavoriteIcon, FavoriteBorderIcon } from "@mui/icons-material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { photoAtom, likedAtom } from "./state";
 
-const Like = () => {
-  const [liked, setLiked] = useState(false);
-
-  const toggle = () => {
-    setLiked(!liked);
+const Like = ({ liked, photo, onToggleLike }) => {
+  const handleLikeToggle = () => {
+    onToggleLike(photo);
   };
 
   return (
-    <IconButton onClick={() => toggle()}>
+    <IconButton onClick={handleLikeToggle}>
       {liked === false ? (
         <FavoriteBorderIcon />
       ) : (

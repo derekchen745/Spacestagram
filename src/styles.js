@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
   },
 
+  right: { display: "flex" },
+
   container: {
     // backgroundColor: theme.palette.background.paper,
     paddingTop: "10px",
@@ -27,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
   searchBar: {
     // width: "200px",
     marginLeft: "auto",
+  },
+
+  likedPage: {
+    marginLeft: "auto",
+    marginRight: "10px",
   },
 
   cardGrid: {
