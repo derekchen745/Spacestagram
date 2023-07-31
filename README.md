@@ -5,7 +5,7 @@ An Instagram clone that displays pictures of outer space using NASA's Astronomy 
 The app's current features include:
 1. A heart icon that can be clicked to like/unlike a post
 2. A liked post page where you are able to access all of the posts that you have liked
-3. A search by date feature which retrives the photo that was posted on a certain day
+3. A search by date feature which retrieves the photo that was posted on a certain day
 
 # Pictures
 ![image](https://user-images.githubusercontent.com/64324212/189500383-bbdc6a6e-a9e7-4026-9178-12ddebf431a7.png)
