@@ -86,23 +86,31 @@ const Gallery = () => {
 
   return (
     <Container className={classes.cardGrid} maxWidth="sm">
-      {photo?.length > 0 ? (
-        <div>
-          {photo
-            .slice()
-            .reverse()
-            .map((photo) => (
-              <Grid container spacing={4}>
-                <Grid item key={photo}>
-                  <PhotoCard
-                    photo={photo}
-                    onToggleLike={togglePhotoLikeCallback}
-                    liked={findLikedPhoto(photo)}
-                  />
+      {photo ? (
+        photo.length > 0 ? (
+          <div>
+            {photo
+              .slice()
+              .reverse()
+              .map((photo) => (
+                <Grid container spacing={4}>
+                  <Grid item key={photo}>
+                    <PhotoCard
+                      photo={photo}
+                      onToggleLike={togglePhotoLikeCallback}
+                      liked={findLikedPhoto(photo)}
+                    />
+                  </Grid>
                 </Grid>
-              </Grid>
-            ))}
-        </div>
+              ))}
+          </div>
+        ) : (
+          <PhotoCard
+            photo={photo}
+            onToggleLike={togglePhotoLikeCallback}
+            liked={findLikedPhoto(photo)}
+          />
+        )
       ) : (
         <div>
           <Typography variant="h6" align="center">
