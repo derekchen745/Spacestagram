@@ -15,6 +15,7 @@ import { TextField } from "@mui/material";
 import { dateAtom } from "./state";
 import {
   useNavigate,
+  useLocation,
 } from "react-router-dom";
 
 library.add(fab);
@@ -30,6 +31,9 @@ const NavBar = () => {
   const day = String(currentDate.getDate()).padStart(2, "0");
 
   const formattedDate = `${year}-${month}-${day}`;
+
+  const location = useLocation();
+  console.log(location.pathname);
 
   console.log("now" + formattedDate);
 
@@ -70,6 +74,7 @@ const NavBar = () => {
 
             <div className={classes.searchBar}>
               <TextField
+                disabled={location.pathname === "/liked" ? true : false}
                 id="date"
                 label="Search By Date"
                 InputProps={{ inputProps: { max: formattedDate } }}

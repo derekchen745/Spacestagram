@@ -26,14 +26,14 @@ const PhotoCard = ({ photo, onToggleLike, liked }) => {
         ) : (
           <Typography align='center' sx={{ justifyContent: 'center', alignItems: 'center' }}>Cannot Display Video</Typography>
         )}
-        <CardContent className={classes.cardExplaination}>
+        <CardContent className={classes.cardExplaination} style={{ paddingBottom: '0px' }}>
           <Typography>{photo?.explanation ?? ""}</Typography>
-          <Typography justify="left">
+          <Typography justify="left" style={{ marginTop: '8px' }}>
             Copyright: {photo?.copyright ?? ""}
           </Typography>
         </CardContent>
 
-        <CardActions>
+        <CardActions style={{ paddingTop: '0px' }}>
           <Like onToggleLike={onToggleLike} photo={photo} liked={liked} />
         </CardActions>
       </Card>
