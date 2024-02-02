@@ -7,22 +7,13 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
   Typography,
   AppBar,
-  Button,
   CssBaseline,
-  Grid,
   Toolbar,
-  Container,
 } from "@material-ui/core";
 import useStyles from "./styles";
-import DateSearch from "./DateSearch";
 import { TextField } from "@mui/material";
-import { photoAtom, dateAtom } from "./state";
+import { dateAtom } from "./state";
 import {
-  Outlet,
-  Route,
-  Routes,
-  Link,
-  BrowserRouter,
   useNavigate,
 } from "react-router-dom";
 
@@ -32,6 +23,15 @@ const NavBar = () => {
   const [date, setDate] = useRecoilState(dateAtom);
   const classes = useStyles();
   const navigate = useNavigate();
+  const currentDate = new Date();
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  const day = String(currentDate.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+
+  console.log("now" + formattedDate);
 
   const handleClick1 = () => {
     navigate("/liked");
@@ -72,12 +72,14 @@ const NavBar = () => {
               <TextField
                 id="date"
                 label="Search By Date"
+                InputProps={{ inputProps: { max: formattedDate } }}
                 type="date"
-                defaultValue="2022-01-01"
+                defaultValue={formattedDate}
                 size="small"
                 InputLabelProps={{
                   shrink: true,
                 }}
+
                 onChange={(e) => setDate(e.target.value)}
               />
             </div>

@@ -1,19 +1,11 @@
 import React, { useCallback } from "react";
+import { styled } from "@mui/material/styles";
 import {
   Typography,
-  AppBar,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  CssBaseline,
   Grid,
-  Toolbar,
   Container,
 } from "@material-ui/core";
 import useStyles from "./styles";
-import Like from "./Like";
 import PhotoCard from "./PhotoCard";
 import { likedPhotos } from "./state";
 import { useRecoilState } from "recoil";
@@ -25,10 +17,10 @@ const LikedPage = () => {
 
   const togglePhotoLikeCallback = useCallback(
     (togglePhoto) => {
-      if (likedArray.find((photo) => photo.url == togglePhoto.url) != null) {
+      if (likedArray.find((photo) => photo.url === togglePhoto.url) != null) {
         // unliking photo
         setLikedPhotos(
-          likedArray.filter((photo) => photo.url != togglePhoto.url)
+          likedArray.filter((photo) => photo.url !== togglePhoto.url)
         );
       } else {
         // liking photo
@@ -40,21 +32,17 @@ const LikedPage = () => {
 
   const findLikedPhoto = useCallback(
     (photo) => {
-      return likedArray.find((p) => p.url == photo.url) != null;
+      return likedArray.find((p) => p.url === photo.url) != null;
     },
     [likedArray]
   );
 
   return (
     <Container className={classes.cardGrid} maxWidth="sm">
-      <Grid>
-        <Card className={classes.card}>
-          <CardContent className={classes.cardHeader}>
-            <Typography variant="h5">
-              These are the photos that you've liked
-            </Typography>
-          </CardContent>
-        </Card>
+      <Grid container spacing={4}>
+        <TitlePaper>
+          <Typography variant="h4">Liked Photos</Typography>
+        </TitlePaper>
         {likedArray.map((photo) => (
           <Grid item>
             <PhotoCard
@@ -70,3 +58,14 @@ const LikedPage = () => {
 };
 
 export default LikedPage;
+
+export const TitlePaper = styled("div")({
+  display: "inline-block",
+  position: "relative",
+  left: "50%",
+  transform: "translateX(-50%)",
+  padding: "8px 16px",
+  marginBottom: "8px",
+  marginTop: "8px",
+  alignText: "center",
+});

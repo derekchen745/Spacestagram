@@ -1,34 +1,17 @@
 import React, { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import Like from "./Like";
 import PhotoCard from "./PhotoCard";
 import { photoAtom, dateAtom, likedPhotos } from "./state";
-import DateSearch from "./DateSearch";
-import { TextField, Stack } from "@mui/material";
-import { Outlet, Route, Routes, Link } from "react-router-dom";
-import axios from "axios";
-import NavBar from "./NavBar";
-
 import {
   Typography,
-  AppBar,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  CssBaseline,
   Grid,
-  Toolbar,
   Container,
 } from "@material-ui/core";
 import useStyles from "./styles";
-import { Box } from "@mui/system";
 library.add(fab, faHeart);
 
 const API_URL = "https://api.nasa.gov/planetary/apod";
@@ -49,7 +32,7 @@ const Gallery = () => {
     });
 
     const start_date = new Date(
-      Date.parse(new Date()) - 864000000 //864000000 is the amount of milliseconds in 10 days
+      Date.parse(new Date()) - 864000000 //864000000 is the amount of milliseconds in 10 days 100 days: 8640000000
     ).toLocaleDateString("en-CA", {
       year: "numeric",
       month: "numeric",
@@ -75,9 +58,9 @@ const Gallery = () => {
 
   const togglePhotoLikeCallback = useCallback(
     (photo) => {
-      if (likedArray.find((p) => p.url == photo.url) != null) {
+      if (likedArray.find((p) => p.url === photo.url) !== null) {
         // unliking photo
-        setLikedPhotos(likedArray.filter((p) => p.url != photo.url));
+        setLikedPhotos(likedArray.filter((p) => p.url !== photo.url));
       } else {
         // liking photo
         setLikedPhotos([...likedArray, photo]);
@@ -90,9 +73,9 @@ const Gallery = () => {
     (photo) => {
       console.log(
         photo,
-        likedArray.find((p) => p.url == photo.url)
+        likedArray.find((p) => p.url === photo.url)
       );
-      return likedArray.find((p) => p.url == photo.url) != null;
+      return likedArray.find((p) => p.url === photo.url) !== null;
     },
     [likedArray]
   );
@@ -122,11 +105,9 @@ const Gallery = () => {
         </div>
       ) : (
         <div>
-          <PhotoCard
-            photo={photo}
-            onToggleLike={togglePhotoLikeCallback}
-            liked={findLikedPhoto(photo)}
-          />
+          <Typography variant="h6" align="center">
+            Loading images...
+          </Typography>
         </div>
       )}
     </Container>
