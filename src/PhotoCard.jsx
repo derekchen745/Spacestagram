@@ -28,7 +28,7 @@ const PhotoCard = ({ photo, onToggleLike, liked }) => {
         )}
         <CardContent className={classes.cardExplaination}>
           <Typography>{photo?.explanation ?? ""}</Typography>
-          <Typography variant='caption' justify="left">
+          <Typography justify="left">
             Copyright: {photo?.copyright ?? ""}
           </Typography>
         </CardContent>

@@ -58,7 +58,7 @@ const Gallery = () => {
 
   const togglePhotoLikeCallback = useCallback(
     (photo) => {
-      if (likedArray.find((p) => p.url === photo.url) !== null) {
+      if (likedArray.find((p) => p.url === photo.url) != null) {
         // unliking photo
         setLikedPhotos(likedArray.filter((p) => p.url !== photo.url));
       } else {
@@ -75,7 +75,7 @@ const Gallery = () => {
         photo,
         likedArray.find((p) => p.url === photo.url)
       );
-      return likedArray.find((p) => p.url === photo.url) !== null;
+      return likedArray.find((p) => p.url === photo.url) != null;
     },
     [likedArray]
   );
